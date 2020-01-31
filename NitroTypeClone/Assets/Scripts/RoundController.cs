@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+
 public class RoundController : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI StringToTypeField;
@@ -16,11 +17,16 @@ public class RoundController : MonoBehaviour
     private float playerTime;
     private bool bStopTimer;
 
+    private GUIStyle CorrectStyle;
+
     private void Awake()
     {
         StringToType = "This is some sample text, can you type it?";
         currentIndex = 0;
         bStopTimer = false;
+
+        CorrectStyle = new GUIStyle();
+        CorrectStyle.richText = true;
     }
     // Start is called before the first frame update
     void Start()
@@ -89,6 +95,7 @@ public class RoundController : MonoBehaviour
             if (CorrectString[i] == UserInput[i])
             {
                 currentIndex++;
+                //TODO Change individual letters colors instead of overlaying an entire string on top. This will be easier to work with later. 
                 CorrectlyTypedOverlay.text += CorrectString[i];
                 continue;
             }
